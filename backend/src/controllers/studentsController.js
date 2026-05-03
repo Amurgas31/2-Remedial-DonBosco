@@ -49,7 +49,7 @@ studentsController.updateStudent = async (req, res) => {
         career,
         isVerified,
         loginAttempts,
-        timeOut
+        timeOut,
       },
       { new: true },
     );
