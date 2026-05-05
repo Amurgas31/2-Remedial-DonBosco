@@ -57,7 +57,7 @@ loginTeachersController.login = async (req, res) => {
     }
 
     // Resetear intentos si login correcto
-    teacherFound.loginAttemps = 0;
+    teacherFound.loginAttempts = 0;
     teacherFound.timeOut = null;
 
     // Generar el token
