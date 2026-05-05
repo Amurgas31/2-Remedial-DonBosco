@@ -37,12 +37,12 @@ loginStudentsController.login = async (req, res) => {
     const isMatch = await bcrypt.compare(password, studentFound.password);
 
     if (!isMatch) {
-      studentFound.loginAttemps = (studentFound.loginAttemps || 0) + 1;
+      studentFound.loginAttempts = (studentFound.loginAttempts || 0) + 1;
 
       // Si llega a 5 intentos fallidos se bloquea la cuenta
-      if (studentFound.loginAttemps >= 5) {
+      if (studentFound.loginAttempts >= 5) {
         studentFound.timeOut = Date.now() + 5 * 60 * 1000;
-        studentFound.loginAttemps = 0;
+        studentFound.loginAttempts = 0;
 
         await studentFound.save();
 
@@ -57,7 +57,7 @@ loginStudentsController.login = async (req, res) => {
     }
 
     // Resetear intentos si login correcto
-    studentFound.loginAttemps = 0;
+    studentFound.loginAttempts = 0;
     studentFound.timeOut = null;
 
     // Generar el token
