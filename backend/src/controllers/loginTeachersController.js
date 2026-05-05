@@ -37,12 +37,12 @@ loginTeachersController.login = async (req, res) => {
     const isMatch = await bcrypt.compare(password, teacherFound.password);
 
     if (!isMatch) {
-      teacherFound.loginAttemps = (teacherFound.loginAttemps || 0) + 1;
+      teacherFound.loginAttempts = (teacherFound.loginAttempts || 0) + 1;
 
       // Si llega a 5 intentos fallidos se bloquea la cuenta
-      if (teacherFound.loginAttemps >= 5) {
+      if (teacherFound.loginAttempts >= 5) {
         teacherFound.timeOut = Date.now() + 5 * 60 * 1000;
-        teacherFound.loginAttemps = 0;
+        teacherFound.loginAttempts = 0;
 
         await teacherFound.save();
 
